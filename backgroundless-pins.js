@@ -18,6 +18,9 @@ Hooks.on("init", () => {
 Hooks.on("renderNoteConfig", (noteConfig, html, _) => {
     const hasBackground = noteConfig.object.getFlag("backgroundless-pins", "hasBackground") ?? false;
     const iconTintGroup = html.find("[name=iconTint]").closest(".form-group");
+    const ratio = noteConfig.object.getFlag("backgroundless-pins", "ratio") ?? 1;
+    const iconSizeGroup = html.find("[name=iconSize]").closest(".form-group");
+    
     iconTintGroup.after(`
         <div class="form-group">
             <label for="flags.backgroundless-pins.hasBackground">Show Background?</label>
@@ -25,6 +28,13 @@ Hooks.on("renderNoteConfig", (noteConfig, html, _) => {
         </div>
     `);
     noteConfig.setPosition({ height: "auto" });
+    
+    iconSizeGroup.after(`
+        <div class="form-group">
+            <label for="flags.backgroundless-pins.ratio">Width to Size Ratio</label>
+            <input type="checkbox" name="flags.backgroundless-pins.ratio" data-dtype="Number" ${ratio}>
+        </div>
+    `);
 });
 
 export class BackgroundlessControlIcon extends ControlIcon {
@@ -42,7 +52,8 @@ export class BackgroundlessControlIcon extends ControlIcon {
 
         // Draw icon
         this.icon.texture = this.texture ?? (await loadTexture(this.iconSrc));
-        this.icon.width = this.icon.height = this.size;
+        this.icon.height = this.size;
+        this.icon.width = this.size * this.getFlag("backgroundless-pins", "ratio"); // maybe I should also change the rect size? Otherwise the broder/active space will be off.
         this.icon.tint = Number.isNumeric(this.tintColor) ? this.tintColor : 0xffffff;
         return this;
     }
