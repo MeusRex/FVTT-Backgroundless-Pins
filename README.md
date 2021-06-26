@@ -6,6 +6,8 @@ Removes the background box from map notes.
 
 This preview also uses the Pin Cushion module to allow for customizable map note icons.
 
+MeusRex -> Added Support for Rectangular Notes. Added option to always show text. Everything else is by schultzcole.
+
 ## Acknowledgements
 
 - Thank you to [/u/DungeonMasterGroon](https://www.reddit.com/user/DungeonMasterGroon) for the [Eyrebrin Map](https://www.reddit.com/r/dndmaps/comments/ersprs/my_homebrew_continent_of_eyrebrin/) used in the preview.
