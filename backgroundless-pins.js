@@ -25,15 +25,14 @@ Hooks.on("init", () => {
 	let textAlwaysVisible = this.document.getFlag("backgroundless-pins", "textAlwaysVisible") ?? false;
 	let textVisible = true;
 	if (textAlwaysVisible == false)
-		textVisible = this._hover;
+	    textVisible = this._hover;
 	this.tooltip.visible = textVisible;
 	this.visible = this.entry?.testUserPermission(game.user, "LIMITED") ?? true;
 
 	// Text is created bevor this point. So we can modify it here.
 	let ratio = this.document.getFlag("backgroundless-pins", "ratio");
-	let size = this.size;
 	let text = this.children[1]; // 0 is the ControlIcon, 1 is the PreciseText
-	text.x = (size * (ratio - 1)) / 2;
+	text.x = (this.size * (ratio - 1)) / 2; // correct shifting for the new scale.
 
 	return this;
     }
@@ -57,7 +56,6 @@ Hooks.on("renderNoteConfig", (noteConfig, html, _) => {
         </div>
     `);
     
-    
     iconSizeGroup.after(`
         <div class="form-group">
             <label for="flags.backgroundless-pins.ratio">Width to Size Ratio</label>
@@ -67,13 +65,13 @@ Hooks.on("renderNoteConfig", (noteConfig, html, _) => {
         </div>
     `);
 	
-	textAnchorGroup.after(`
-        <div class="form-group">
-            <label for="flags.backgroundless-pins.hasBackground">Text Always Visible?</label>
+    textAnchorGroup.after(`
+	<div class="form-group">
+	    <label for="flags.backgroundless-pins.hasBackground">Text Always Visible?</label>
 	    <div class="form-fields">
 		<input type="checkbox" name="flags.backgroundless-pins.textAlwaysVisible" data-dtype="Boolean" ${textAlwaysVisible ? "checked" : ""}>
 	    </div>
-        </div>
+	</div>
     `);
 	
     noteConfig.setPosition({ height: "auto" });
