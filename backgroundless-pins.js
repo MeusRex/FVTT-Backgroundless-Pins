@@ -4,13 +4,12 @@ Hooks.on("init", () => {
         let tint = this.data.iconTint ? colorStringToHex(this.data.iconTint) : null;
         let iconData = { texture: this.data.icon, size: this.size, tint: tint };
         let icon;
-		let ratio = 1;
 		
         if (this.getFlag("backgroundless-pins", "hasBackground")) {
             icon = new ControlIcon(iconData);
         } else {
             icon = new BackgroundlessControlIcon(iconData);
-			icon.scale.x = this.getFlag("backgroundless-pins", "ratio");
+	    icon.scale.x = this.getFlag("backgroundless-pins", "ratio");
             // need to centre text
         }
         icon.x -= this.size / 2;
