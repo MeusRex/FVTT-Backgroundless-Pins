@@ -4,10 +4,14 @@ Hooks.on("init", () => {
         let tint = this.data.iconTint ? colorStringToHex(this.data.iconTint) : null;
         let iconData = { texture: this.data.icon, size: this.size, tint: tint };
         let icon;
+		let ratio = 1;
+		
         if (this.getFlag("backgroundless-pins", "hasBackground")) {
             icon = new ControlIcon(iconData);
         } else {
             icon = new BackgroundlessControlIcon(iconData);
+			icon.scale.x = this.getFlag("backgroundless-pins", "ratio");
+            // need to centre text
         }
         icon.x -= this.size / 2;
         icon.y -= this.size / 2;
@@ -32,7 +36,7 @@ Hooks.on("renderNoteConfig", (noteConfig, html, _) => {
     iconSizeGroup.after(`
         <div class="form-group">
             <label for="flags.backgroundless-pins.ratio">Width to Size Ratio</label>
-            <input type="checkbox" name="flags.backgroundless-pins.ratio" data-dtype="Number" ${ratio}>
+            <input type="text" name="flags.backgroundless-pins.ratio" data-dtype="Number" value="${ratio}">
         </div>
     `);
 });
@@ -52,8 +56,7 @@ export class BackgroundlessControlIcon extends ControlIcon {
 
         // Draw icon
         this.icon.texture = this.texture ?? (await loadTexture(this.iconSrc));
-        this.icon.height = this.size;
-        this.icon.width = this.size * this.getFlag("backgroundless-pins", "ratio"); // maybe I should also change the rect size? Otherwise the broder/active space will be off.
+        this.icon.height = this.icon.width = this.size;
         this.icon.tint = Number.isNumeric(this.tintColor) ? this.tintColor : 0xffffff;
         return this;
     }
