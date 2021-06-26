@@ -4,12 +4,12 @@ Hooks.on("init", () => {
         let tint = this.data.iconTint ? colorStringToHex(this.data.iconTint) : null;
         let iconData = { texture: this.data.icon, size: this.size, tint: tint };
         let icon;
-		// this is note
+	// this is note
         if (this.getFlag("backgroundless-pins", "hasBackground")) {
             icon = new ControlIcon(iconData);
         } else {
             icon = new BackgroundlessControlIcon(iconData);
-			icon.scale.x = this.getFlag("backgroundless-pins", "ratio");
+	    icon.scale.x = this.getFlag("backgroundless-pins", "ratio");
         }
         icon.x -= this.size / 2;
         icon.y -= this.size / 2;
@@ -19,11 +19,11 @@ Hooks.on("init", () => {
 	// Keep tooltip always visible
 	// Though could make an option out of that too. Would be nicer
 	Note.prototype.refresh = function() {
-		this.position.set(this.data.x, this.data.y);
-		this.controlIcon.border.visible = this._hover;
-		this.tooltip.visible = true;
-		this.visible = this.entry?.testUserPermission(game.user, "LIMITED") ?? true;
-		return this;
+	    this.position.set(this.data.x, this.data.y);
+	    this.controlIcon.border.visible = this._hover;
+	    this.tooltip.visible = true;
+	    this.visible = this.entry?.testUserPermission(game.user, "LIMITED") ?? true;
+	    return this;
 	}
 	
 	// Override map notes to use the BackgroundlessControlIcon 
@@ -101,12 +101,12 @@ export class BackgroundlessControlIcon extends ControlIcon {
         this.icon.height = this.icon.width = this.size;
         this.icon.tint = Number.isNumeric(this.tintColor) ? this.tintColor : 0xffffff;
 		
-		// Horribly hacky. Like for real...
-		let note = this.parent;
-		let ratio = note.getFlag("backgroundless-pins", "ratio");
-		let size = note.size;
-		let text = note.children[1];
-		text.x = (size * (ratio - 1)) / 2;
+	// Horribly hacky. Like for real...
+	let note = this.parent;
+	let ratio = note.getFlag("backgroundless-pins", "ratio");
+	let size = note.size;
+	let text = note.children[1];
+	text.x = (size * (ratio - 1)) / 2;
 		
         return this;
     }
