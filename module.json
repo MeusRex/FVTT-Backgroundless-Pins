@@ -10,9 +10,9 @@
 	"minimumCoreVersion": "0.7.3",
 	"compatibleCoreVersion": "0.7.3",
 	"url": "https://github.com/schultzcole/FVTT-Backgroundless-Pins",
-	"manifest": "https://raw.githubusercontent.com/schultzcole/FVTT-Backgroundless-Pins/master/module.json",
-	"download": "https://github.com/schultzcole/FVTT-Backgroundless-Pins/archive/1.2.0.zip",
-	"license": "https://github.com/schultzcole/FVTT-Backgroundless-Pins/blob/1.2.0/LICENSE",
-	"readme": "https://github.com/schultzcole/FVTT-Backgroundless-Pins/blob/1.2.0/README.md",
-	"changelog": "https://github.com/schultzcole/FVTT-Backgroundless-Pins/blob/1.2.0/CHANGELOG.md"
+	"manifest": "https://raw.githubusercontent.com/MeusRex/FVTT-Backgroundless-Pins/master/module.json",
+	"download": "https://github.com/MeusRex/FVTT-Backgroundless-Pins/archive/1.2.0.zip",
+	"license": "https://github.com/MeusRex/FVTT-Backgroundless-Pins/blob/1.2.0/LICENSE",
+	"readme": "https://github.com/MeusRex/FVTT-Backgroundless-Pins/blob/1.2.0/README.md",
+	"changelog": "https://github.com/MeusRex/FVTT-Backgroundless-Pins/blob/1.2.0/CHANGELOG.md"
 }
